@@ -1,0 +1,59 @@
+% !TEX encoding = UTF-8 Unicode
+\documentclass[12pt,openany, oneside, a4paper,brazil]{abntex2}
+\usepackage{indentfirst}
+\usepackage[utf8]{inputenc}
+\usepackage[T1]{fontenc}
+\usepackage{lmodern} %fonte
+\usepackage{lastpage} %ficha catalografica
+\usepackage[num, overcite]{abntex2cite}
+\usepackage{amsmath}
+\usepackage{float}
+\citebrackets[]
+\setlength{\parskip}{0.75cm} % tente também \onelineskip
+
+\titulo{Uso de redes neurais e paralelismo para criptoanálise}
+\autor{Bianca de Carvalho Lodoli \and Heitor Matos Magnani \and Rafael de Paula Paiva}
+\data{\today}
+\instituicao{Instituto Militar de Engenharia}
+\local{Rio de Janeiro}
+\tipotrabalho{Projeto de Fim de Curso}
+\orientador{José Antônio Moreira Xexéo}
+\coorientador{Raquel Coelho Gomes Pinto}
+\preambulo{Trabalho apresentado ao Curso de Engenharia de Computação do Instituto Militar de Engenharia como Verificação Especial do Projeto de Fim de Curso.}
+
+\input{capa.tex}
+
+\begin{document}
+\imprimircapa
+\imprimirfolhaderosto{}
+\input{fichacatalografica.tex}
+\input{folhadeaprovacao.tex}
+
+\tableofcontents*
+\newpage
+
+% \addcontentsline{toc}{chapter}{\listfigurename}
+% \listoffigures*
+% \cleardoublepage
+
+% \addcontentsline{toc}{chapter}{\listtablename}
+% \listoftables*
+% \cleardoublepage
+
+% \addcontentsline{toc}{chapter}{\listadesiglasname}
+% \input{lista_abreviaturas.tex}
+
+% \addcontentsline{toc}{chapter}{\listadesimbolosname}
+% \input{lista_simbolos.tex}
+
+\input{resumo.tex}
+
+\textual
+
+\input{introducao.tex}
+\input{desenvolvimento.tex}
+\input{conclusao.tex}
+
+\postextual
+\bibliography{refs}
+\end{document}

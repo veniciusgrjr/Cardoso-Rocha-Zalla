@@ -1,0 +1,17 @@
+#Ignoring the links
+*.lnk
+
+#Ignoring auto-generated latex files
+report/*
+!report/conteudo
+!report/**/*.tex
+!report/*.sh
+!report/*.bib
+!report/*.pdf
+
+#Ignoring log files
+*.log
+
+#Ignoring OSX files
+.DS_Store
+

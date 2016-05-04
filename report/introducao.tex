@@ -1,0 +1,34 @@
+\chapter{Introdução}
+
+\section{Motivação}
+
+\section{Objetivo}
+
+\section{Justificativa}
+
+\section{Metodologia}
+
+Para alcancar os objetivos desejados, o trabalho divide-se em três etapas:
+\begin{enumerate}
+\item Obtenção dos criptogramas
+\item Projeto da rede neural
+\item Aprendizado e análise da rede
+\end{enumerate}
+
+A primeira etapa consiste em obter os textos em claro, obter as chaves, e obter os criptogramas. A parte de obtenção de textos serve para evitar \emph{overfitting}, que consiste na perda de generalidade que ocorre em procedimentos de aprendizado de máquina quando um pequeno erro dentro da amostra deixa de indicar um erro pequeno fora da amostra,podendo levar ao efeito contrário \cite{mostafa2012learning}.
+
+A intenção é obter textos que não tenham correlação entre si. Foi considerado obter os textos da \emph{DBPedia}.
+
+A \emph{DBPedia} é uma base de dados criada com base na \emph{Wikipedia}, que relaciona as informações contidas em seus artigos, com dados de locais, pessoas, conceitos; uma base ontológica. O acesso à \emph{DBPedia} e feito através de requisições \emph{SPARQL} ao servidor da \emph{DBPedia}.
+Foram obtidos os 400 textos mais extensos da base em português, com base nos resumos dos artigos, e depois concatenados dois a dois, seguindo o modelo do n-ésimo maior com o n-ésimo menor. Os tamanhos dos textos variam entre 35KB e 11KB.
+
+Após a obtenção dos textos, eles devem ser preprocessados a fim de que possam ser criptografados.
+%FALTA O MOTIVO DO PREPROCESSAMENTO
+
+Após isso, os textos ficam prontos para serem criptografados. Para a criptografia, foi utilizada a biblioteca \emph{PyCrypto}\footnote{Documentação disponível em: $<$https://www.dlitz.net/software/pycrypto/api/current/$>$}, que foi utilizada tambem para a geração das chaves.
+Foram geradas mil (1000) chaves para cada algoritmo. As chaves foram geradas segundo o tamanho máximo da chave aceito pelos algoritmos.
+Com isso, tem-se um milhão de criptogramas para a rede neural.
+
+A segunda etapa consiste
+
+\section{Estrutura}
