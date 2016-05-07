@@ -230,23 +230,8 @@ dos comandos do Git:
 	\end{lstlisting}
 \end{itemize}
 
-Agora, o diretório local será modificado e sincronizado 
-com o repositório no Github. Para isso, será criado um 
-arquivo com o nome de portas.sh, com o seguinte código:
-    \begin{lstlisting}
-	  #!/bin/sh
-	  echo "Lista de porta 80 no netstat"
-	  netstat -an | grep 80
-    \end{lstlisting}
- 
- Para adicionar essa modificação ao repositório no Github:
- 
-     \begin{lstlisting}
-	  Git add portas.sh
-	  Git commit -m "add portas.sh"
-	  Git push origin master
-    \end{lstlisting}
- 
+
+
 \subsection{Vagrant e Virtualbox}
 \subsection{Ansible}
 \subsection{Instalando Wordpress em uma máquina}
