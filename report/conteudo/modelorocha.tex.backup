@@ -348,27 +348,202 @@ Assim, resumindo os comandos, temos:
     \begin{lstlisting}
 vagrant up
     \end{lstlisting}
-   \item Para subir a máquina virtual:
+   \item Para se conectar à máquina virtual:
     \begin{lstlisting}
-vagrant up
+vagrant ssh
     \end{lstlisting}   
-   \item Para subir a máquina virtual:
+   \item Para destruir a máquina virtual:
     \begin{lstlisting}
-vagrant up
+vagrant destroy
     \end{lstlisting}
-   \item Para subir a máquina virtual:
+   \item Para desativar a máquina virtual:
     \begin{lstlisting}
-vagrant up
+vagrant halt
     \end{lstlisting}    
-  
+   \item Para executar somente o provisionamento:
+    \begin{lstlisting}
+vagrant provision
+    \end{lstlisting}
 \end{enumerate}
 
+Usar os processos fornecidos pelo VirtualBox, 
+por exemplo, para criar máquinas virtuais se torna um 
+processo demorado e difícil de ser replicado. Usando 
+esse Vagrantfile, é possível subir( up) a mesma máquina 
+várias vezes, em ocasiões distintas sem usar a 
+interface do VirtualBox. É possível versionar este 
+arquivo que descreve a  máquina virtual junto com seu 
+código e quando mudar a configuração de memória, por 
+exemplo, esta mudança estará no histórico junto às 
+mudanças de código.
 
+O Vagrant e sua configuração utiliza Ruby. Existem 
+versões distintas de APIs e nesse trabalho será utilizada 
+a versão 2. Assim, dentro de uma instância da configuração 
+definimos máquinas e suas características, em um bloco de 
+código Ruby.
+O Vagrant implementa o conceito de provisionador com 
+drivers para quase todos os sistemas de gerenciamento de 
+configuração existentes. Estes sistemas vão desde receitas 
+simples para instalar pacotes até agentes que verificam a 
+integridade de arquivos de configuração e variáveis do 
+sistema. Vamos utilizar um driver de provisionamento do 
+vagrant que permite que um arquivo com comandos do shell 
+seja executado logo após a criação da máquina virtual. 
+Assim será criado o arquivo webserver.sh no mesmo diretório 
+e com o seguinte código: 
+\begin{lstlisting}
+#!/bin/bash
 
-\subsubsection{Virtualbox}
+echo “Atualizando repositorio”
+sudo apt-get update
+echo “Instalando o nginx”
+sudo apt-get -y install nginx
+\end{lstlisting}
 
+Agora o vagrantfile será editado para que o provisionamento 
+seja ativado. ele deve ficar com o exposto abaixo:
+\begin{lstlisting}
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
 
+VAGRANTFILE_API_VERSION = “2”
+
+Vagrant.configure( VAGRANTFILE_API_VERSION ) do |config|
+
+	config.vm.define “testvm” do |testvm|
+		testvm.vm.box = “ubuntu/trusty64”
+		testvm.vm.network : private_network, ip : “192.168.33.21”
+		testvm.vm.provision “shell”, path: “webserver.sh”
+	end
+	config.vm.provider “virtualbox” do |v|
+		v.customize [“modifyvm”, :id, “--memory”, “1024”]
+	end
+end
+\end{lstlisting}
+
+Agora a máquina que está rodando será 
+destruída com vagrant destroy e criada novamente com 
+vagrant up.Observando a saída do terminal, e fazendo 
+o teste no browser, percebemos que o nginx foi 
+instalado com sucesso sem a necessidade de se conectar 
+por ssh para executar o comando que instala o nginx na 
+máquina virtual.
+
+Vamos instalar, agora, o PHP5 na máquina virtual. Para isso, 
+será modificado o arquivo webserver.sh de acordo com o código
+a seguir:
+\begin{lstlisting}
+#!/bin/bash
+
+echo “Atualizando repositorio”
+sudo apt-get update
+echo “Instalando o nginx”
+sudo apt-get -y install nginx
+echo “instalando PHP”
+sudo apt-get install -y php5-fpm
+\end{lstlisting}
+Nesse ponto, não foi preciso destruir e recriar a máquina para 
+executar novamente o provisionamento. foi aproveitado o fato 
+de que o gerenciador de pacotes não instalará um pacote duas 
+vezes. Assim, é possível executar o mesmo script, que só o PHP 
+seria instalado. O Vagrant oferece um comando que ativa somente 
+a fase do provisionamento, vagrant provision. Assim Executando 
+vagrant provision no terminal, observa-se a execução do script. 
+Note que os comandos do Vagrant só funcionaram dentro 
+do diretório em que o vagrantfile está. 
+Com o comando ls -larth é possível ver que foi criado um diretório 
+chamado .vagrant que contém todos os dados do ciclo de vida e 
+provisionamento da máquina virtual.
 
 \subsection{Ansible}
+
+É um sistema de automação de configuração feito em python, 
+que permite descrever procedimentos em arquivos no formato 
+YAML que são reproduzidos utilizando SSH em máquinas remotas. 
+Existem outras ferramentas desta categoria que executam 
+localmente e que fornecem sevidores para o gerenciamento de 
+dados remotamente, como CHEF, Puppet e CFEngine. Vamos utilizar 
+o Ansible localmente sem seu servidor de dados, o Ansible Tower.
+O Ansible vem com bibliotecas completas para quase todas as 
+tarefas além de uma linguagem de template. Além das tarefas 
+dentro de um servidor, o Ansible fornece módulos para o 
+provisionamento de máquinas e aplicações remotas. 
+Provisionar é o jargão para instalar e configurar itens de 
+infraestrutura e plataforma como máquinas, bancos de dados 
+e balanceadores de carga.
+
+Sistemas como o Ansible implementam tarefas com uma 
+característica importante: idempotência. A idempotência é 
+uma propriedade que, aplicada ao gerenciamento de configuração, 
+garante	que as operações terão o mesmo resultado independentemente 
+do momento em que serão aplicadas. A criação de uma máquina 
+utilizando este conjunto de configurações sempre terá o 
+resultado previsível.
+
+Para instalar no ubuntu, utilizou-se os seguintes comandos:
+\begin{lstlisting}
+sudo apt-get install software-properties-common
+sudo apt-add-repository ppa:ansible/ansible
+sudo apt-get update
+sudo apt-get install ansible
+\end{lstlisting}
+Para testar se foi instalado corretamente, foi digitado no terminal 
+ansible-playbook -h, para verificar se aparece a ajuda do Ansible.
+
+Para configurar o Ansible, foi criado no diretório testvm o 
+arquivo com o código a seguir, com o nome de webserver.yml:
+\begin{lstlisting}
+- hosts: all
+  sudo: True
+  user: vagrant
+  tasks:
+    - name: "Atualiza pacotes"
+      shell: sudo apt-get update
+    - name: "Instala o nginx"
+      shell: sudo apt-get -y install nginx
+\end{lstlisting}
+Esse formato de arquivo funciona como um dicionário no 
+formato: chave: valor. Agora, temos que reconfigurar o Vagrant,
+para isso o arquivo vagrantfile deve ficar do modo a seguir:
+\begin{lstlisting}
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = “2”
+
+Vagrant.configure( VAGRANTFILE_API_VERSION ) do |config|
+
+	config.vm.define “testvm” do |testvm|
+		testvm.vm.box = “ubuntu/trusty64”
+		testvm.vm.network : private_network, ip : “192.168.33.21”
+		testvm.vm.provision “ansible” do |ansible|
+			ansible.playbook = “webserver.yml”
+			ansible.verbose = “vvv”
+		end
+	end
+	config.vm.provider “virtualbox” do |v|
+		v.customize [“modifyvm”, :id, “--memory”, “1024”]
+	end
+end
+\end{lstlisting}
+
+A definição de máquina virtual de testvm tem um atributo 
+que define um provisionador. No capítulo anterior, foi 
+utilizado um shell script para instalar o nginx. Com essa 
+mudança, o Vagrant utilizará o Ansible como provisionador 
+com o playbook webserver.yml. Usou-se o atributo verbose 
+do Ansible com o valor vvv para indicar que todas as 
+mensagens devem ser enviadas para o console, e assim 
+podemos observar os comandos sendo executados.
+
+Toda task é uma função de um módulo de Ansible. 
+Os módulos que vêm na instalação padrão são chamados de 
+Core Modules. É possível construir módulos utilizando a 
+linguagem Python e estender o Ansible. Vamos refatorar nosso playbook para utilizar um módulo core chamado apt_module (http://docs.ansible.com/apt_module.html ) em vez do módulo shell. O módulo shell é útil para automatizar muitas tarefas, mas você vai encontrar módulos especializados do Ansible que cuidam da consistência da tarefa e criam estados para manter a idempotência. Vamos mudar o arquivo webserver.yml para:
+
+
+
+
 \subsection{Instalando Wordpress em uma máquina}
 
