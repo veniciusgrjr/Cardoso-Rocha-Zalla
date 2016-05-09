@@ -248,6 +248,214 @@ Git push origin master
     \end{lstlisting}
  
 \subsection{Vagrant e Virtualbox}
+
+Uma máquina virtual parada é uma imagem de um disco 
+de metadados que descrevem sua configuração: processador, 
+memória, discos e conexões externas. A mesma máquina em 
+execução é um processo que depende de um scheduler( agendador 
+de processos) para coordenar o uso dos recursos locais. Para 
+gerenciar máquinas virtuais, pode-se usar as interfaces das 
+aplicações VirtualBox, Parallels ou VMW, ou pode-se utilizar 
+bibliotecas e sistemas que abstraem as diferenças entre 
+essas plataformas, com interface consistente para criar, 
+executar, parar e modificar uma máquina virtual.
+Para criar e gerenciar os ambientes de máquinas virtuais 
+locais, foi escolhido o Vagrant (www.vagrantup.com). 
+Para executar as máquinas virtuais, foi escolhido o 
+VirtualBox(www.virtualbox.org ).
+
+O Vagrant gerencia e abstrai provedores de máquinas 
+virtuais locais e públicos( VMWare, VirtualBox, Amazon 
+AWS, DigitalOcean, entre outros). Ele tem uma linguagem 
+especifica (DSL) que descreve o ambiente e suas máquinas. 
+Além disso, ele fornece interface para os sistemas de 
+gerenciamento de configuração mais comuns como Chef, 
+Puppet, CFEngine e Ansible. Ele é um software que cria e 
+configura ambientes 
+virtuais de desenvolvimento. Possui interface de 
+linha de comando simples para subir e interagir 
+com esses ambientes virtuais. Essa ferramenta ajuda na 
+criação da infraestrutura para o projeto, usando para 
+isso uma máquina virtual. Nesse momento surge um questionamento: 
+será preciso uma máquina virtual para cada projeto, isso não 
+complicaria ainda mais o projeto? A resposta é não. O Vagrant 
+deixa muita coisa invísivel, possibilitando se preocupar apenas 
+com o código. Funciona como uma máquina virtual reduzida e 
+portável. Para cada projeto é possível deixar 
+um ambiente rodando PHP 4, outro PHP 5, outro Debian, outro em 
+CentOS...
+
+Para instalar o Virtualbox, basta acessar o site  
+www.virtualbox.org, e seguir os passos de instalação. Após isso, 
+para testar se tudo está funcionando, foi feito o download de 
+uma ISO do ubuntu em www.ubuntu.com/download/server e testou-se 
+a criação de máquinas virtuais.
+
+Para instalar o Vagrant, foi acessado www.vagrantup.com e, 
+foram seguidos os passos da instalação. Para criar uma 
+máquina virtual usando o Vagrant seguiu-se os paços
+abaixo:
+\begin{enumerate}
+   \item Foi criado um diretório chamado testvm. 
+   \item Foi criado um arquivo chamado vagrantfile e 
+   digitado nele:
+      \begin{lstlisting}
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = “2”
+
+Vagrant.configure( VAGRANTFILE_API_VERSION ) do |config|
+
+	config.vm.define “testvm” do |testvm|
+		testvm.vm.box = “ubuntu/trusty64”
+		testvm.vm.network : private_network, ip : “192.168.33.21”
+	end
+	config.vm.provider “virtualbox” do |v|
+		v.customize [“modifyvm”, :id, “--memory”, “1024”]
+	end
+end
+      \end{lstlisting}
+  \item no diretório desse arquivo criado,para subir o 
+  servidor digitou-se:
+    \begin{lstlisting}
+vagrant up
+    \end{lstlisting}
+
+      \item Para testar, foi feita uma conexão com a 
+      máquina virtual criada digitando-se:
+    \begin{lstlisting}
+vagrant ssh
+    \end{lstlisting}
+   \item É importante notar que dentro da máquina 
+    o seu diretório local foi mapeado como um mount 
+   point dentro da máquina virtual, acessando o 
+   diretório vagrant digitando cd /vagrant é possível 
+   observar isso. É possível criar este ponto com 
+   outro nome ou deixar de criá-lo de acordo com a 
+   configuração do Vagrantfile.
+   \item Para destruir a máquina virtual criada, 
+   basta digitar no terminal: 
+    \begin{lstlisting}
+vagrant destroy
+//seguido de y, quando for perguntado se pode realmente destruir a máquina virtual
+    \end{lstlisting}
+\end{enumerate}
+
+Assim, resumindo os comandos, temos:
+\begin{enumerate}
+   \item Para subir a máquina virtual:
+    \begin{lstlisting}
+vagrant up
+    \end{lstlisting}
+   \item Para se conectar à máquina virtual:
+    \begin{lstlisting}
+vagrant ssh
+    \end{lstlisting}   
+   \item Para destruir a máquina virtual:
+    \begin{lstlisting}
+vagrant destroy
+    \end{lstlisting}
+   \item Para desativar a máquina virtual:
+    \begin{lstlisting}
+vagrant halt
+    \end{lstlisting}    
+   \item Para executar somente o provisionamento:
+    \begin{lstlisting}
+vagrant provision
+    \end{lstlisting}
+\end{enumerate}
+
+Usar os processos fornecidos pelo VirtualBox, 
+por exemplo, para criar máquinas virtuais se torna um 
+processo demorado e difícil de ser replicado. Usando 
+esse Vagrantfile, é possível subir( up) a mesma máquina 
+várias vezes, em ocasiões distintas sem usar a 
+interface do VirtualBox. É possível versionar este 
+arquivo que descreve a  máquina virtual junto com seu 
+código e quando mudar a configuração de memória, por 
+exemplo, esta mudança estará no histórico junto às 
+mudanças de código.
+
+O Vagrant e sua configuração utiliza Ruby. Existem 
+versões distintas de APIs e nesse trabalho será utilizada 
+a versão 2. Assim, dentro de uma instância da configuração 
+definimos máquinas e suas características, em um bloco de 
+código Ruby.
+O Vagrant implementa o conceito de provisionador com 
+drivers para quase todos os sistemas de gerenciamento de 
+configuração existentes. Estes sistemas vão desde receitas 
+simples para instalar pacotes até agentes que verificam a 
+integridade de arquivos de configuração e variáveis do 
+sistema. Vamos utilizar um driver de provisionamento do 
+vagrant que permite que um arquivo com comandos do shell 
+seja executado logo após a criação da máquina virtual. 
+Assim será criado o arquivo webserver.sh no mesmo diretório 
+e com o seguinte código: 
+\begin{lstlisting}
+#!/bin/bash
+
+echo “Atualizando repositorio”
+sudo apt-get update
+echo “Instalando o nginx”
+sudo apt-get -y install nginx
+\end{lstlisting}
+
+Agora o vagrantfile será editado para que o provisionamento 
+seja ativado. ele deve ficar com o exposto abaixo:
+\begin{lstlisting}
+# -*- mode: ruby -*-
+# vi: set ft=ruby :
+
+VAGRANTFILE_API_VERSION = “2”
+
+Vagrant.configure( VAGRANTFILE_API_VERSION ) do |config|
+
+	config.vm.define “testvm” do |testvm|
+		testvm.vm.box = “ubuntu/trusty64”
+		testvm.vm.network : private_network, ip : “192.168.33.21”
+		testvm.vm.provision “shell”, path: “webserver.sh”
+	end
+	config.vm.provider “virtualbox” do |v|
+		v.customize [“modifyvm”, :id, “--memory”, “1024”]
+	end
+end
+\end{lstlisting}
+
+Agora a máquina que está rodando será 
+destruída com vagrant destroy e criada novamente com 
+vagrant up.Observando a saída do terminal, e fazendo 
+o teste no browser, percebemos que o nginx foi 
+instalado com sucesso sem a necessidade de se conectar 
+por ssh para executar o comando que instala o nginx na 
+máquina virtual.
+
+Vamos instalar, agora, o PHP5 na máquina virtual. Para isso, 
+será modificado o arquivo webserver.sh de acordo com o código
+a seguir:
+\begin{lstlisting}
+#!/bin/bash
+
+echo “Atualizando repositorio”
+sudo apt-get update
+echo “Instalando o nginx”
+sudo apt-get -y install nginx
+echo “instalando PHP”
+sudo apt-get install -y php5-fpm
+\end{lstlisting}
+Nesse ponto, não foi preciso destruir e recriar a máquina para 
+executar novamente o provisionamento. foi aproveitado o fato 
+de que o gerenciador de pacotes não instalará um pacote duas 
+vezes. Assim, é possível executar o mesmo script, que só o PHP 
+seria instalado. O Vagrant oferece um comando que ativa somente 
+a fase do provisionamento, vagrant provision. Assim Executando 
+vagrant provision no terminal, observa-se a execução do script. 
+Note que os comandos do Vagrant só funcionaram dentro 
+do diretório em que o vagrantfile está. 
+Com o comando ls -larth é possível ver que foi criado um diretório 
+chamado .vagrant que contém todos os dados do ciclo de vida e 
+provisionamento da máquina virtual.
+
 \subsection{Ansible}
 \subsection{Instalando Wordpress em uma máquina}
 
