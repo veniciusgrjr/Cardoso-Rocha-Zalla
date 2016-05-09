@@ -22,7 +22,8 @@
 \subsubsection{SSH}
 
 É o protocolo utilizado para conectar-se de forma 
-segura em servidores. Por meio de criptografia ele 
+segura em servidores \cite{ sabharwal2014automation }. 
+Por meio de criptografia ele
 cria um canal seguro entre duas máquinas. Também 
 pode ser utilizado para executar comandos 
 remotamente sem entrar no shell da máquina.
@@ -52,7 +53,6 @@ id_rsa_devops e id_rsa_devops.pub
 	  e representam as chaves públicas.
 
  \end{enumerate} 
-
 \subsubsection{Git}
 
 O Git é um sistema de controle de versão gratuita. 
@@ -81,16 +81,13 @@ sudo yum install git
       \begin{lstlisting}
 brew install git
       \end{lstlisting}
-      
  \end{enumerate}
 Após instalar o Git, execute os seguintes comandos 
 para configurar um nome de usuário e um email: 
-
       \begin{lstlisting}
 git config --global user.name "Seu nome"
 git config --global user.email "seu@email.com.br"
       \end{lstlisting}
-
 Nesse momento o ambiente está com o Git instalado 
 e com nome e e-mail configurados. Será adotado 
 agora um sistema para controlar os repositórios 
@@ -106,7 +103,6 @@ que está em:
       \begin{lstlisting}
 ~/.ssh/id_rsa.pub.
       \end{lstlisting}
-
 Agora, será criado um novo repositório que posteriormente 
 será sincronizado com o repositório local que estará em 
 cada máquina que estiver trabalhando no projeto. Para criar 
@@ -117,7 +113,6 @@ local e, posteriormente, será feita a associação desse
 diretório local com o repositório remoto criado 
 anteriormente no GitHub. Para isso, deve-se seguir os 
 passos listados abaixo:
-
 \begin{enumerate}
    \item Para criar o diretório local digite na linha de comando:
       \begin{lstlisting}
@@ -146,14 +141,11 @@ cd projeto-simples
 #!/bin/sh
 Echo "Itens unicos"
 Ls /etc | cut -d" -f 1 | sort | uniq | wc -l
-      \end{lstlisting}
-      
+      \end{lstlisting} 
  \end{enumerate}
-
 Nesse momento, já foi criado o projeto simples que será 
 sincronizado com o repositório remoto no github. Agora 
 seguiremos os passos a seguir para realizar essa sincronização:
-
 \begin{enumerate}
    \item Para iniciar o repositório Git no diretório local:
       \begin{lstlisting}
@@ -181,15 +173,11 @@ git remote add origin git@github.com:veniciusgrjr/projeto-simples.git
       \begin{lstlisting}
 git push -u origin master
       \end{lstlisting}
-	
  \end{enumerate}
-
 Após isso, se a página do repositório remoto for atualizada, os 
 arquivos locais estarão lá. Será feito agora um pequeno resumo 
 dos comandos do Git:
-
 \begin{itemize}
-
     \item Esse comando Inicia um repositório Git no 
     diretório atual.
 	\begin{lstlisting}
@@ -229,7 +217,6 @@ Git clone
 Git status
 	\end{lstlisting}
 \end{itemize}
-
 Agora, o diretório local será modificado e sincronizado 
 com o repositório no Github. Para isso, será criado um 
 arquivo com o nome de portas.sh, com o seguinte código:
@@ -238,15 +225,12 @@ arquivo com o nome de portas.sh, com o seguinte código:
 echo "Lista de porta 80 no netstat"
 netstat -an | grep 80
     \end{lstlisting}
- 
  Para adicionar essa modificação ao repositório no Github:
- 
      \begin{lstlisting}
 Git add portas.sh
 Git commit -m "add portas.sh"
 Git push origin master
     \end{lstlisting}
- 
 \subsection{Vagrant e Virtualbox}
 
 Uma máquina virtual parada é uma imagem de um disco 
@@ -341,7 +325,6 @@ vagrant destroy
 //seguido de y, quando for perguntado se pode realmente destruir a máquina virtual
     \end{lstlisting}
 \end{enumerate}
-
 Assim, resumindo os comandos, temos:
 \begin{enumerate}
    \item Para subir a máquina virtual:
@@ -365,7 +348,6 @@ vagrant halt
 vagrant provision
     \end{lstlisting}
 \end{enumerate}
-
 Usar os processos fornecidos pelo VirtualBox, 
 por exemplo, para criar máquinas virtuais se torna um 
 processo demorado e difícil de ser replicado. Usando 
@@ -400,7 +382,6 @@ sudo apt-get update
 echo “Instalando o nginx”
 sudo apt-get -y install nginx
 \end{lstlisting}
-
 Agora o vagrantfile será editado para que o provisionamento 
 seja ativado. ele deve ficar com o exposto abaixo:
 \begin{lstlisting}
@@ -421,7 +402,6 @@ Vagrant.configure( VAGRANTFILE_API_VERSION ) do |config|
 	end
 end
 \end{lstlisting}
-
 Agora a máquina que está rodando será 
 destruída com vagrant destroy e criada novamente com 
 vagrant up.Observando a saída do terminal, e fazendo 
@@ -527,7 +507,6 @@ Vagrant.configure( VAGRANTFILE_API_VERSION ) do |config|
 	end
 end
 \end{lstlisting}
-
 A definição de máquina virtual de testvm tem um atributo 
 que define um provisionador. No capítulo anterior, foi 
 utilizado um shell script para instalar o nginx. Com essa 
@@ -540,10 +519,60 @@ podemos observar os comandos sendo executados.
 Toda task é uma função de um módulo de Ansible. 
 Os módulos que vêm na instalação padrão são chamados de 
 Core Modules. É possível construir módulos utilizando a 
-linguagem Python e estender o Ansible. Vamos refatorar nosso playbook para utilizar um módulo core chamado apt_module (http://docs.ansible.com/apt_module.html ) em vez do módulo shell. O módulo shell é útil para automatizar muitas tarefas, mas você vai encontrar módulos especializados do Ansible que cuidam da consistência da tarefa e criam estados para manter a idempotência. Vamos mudar o arquivo webserver.yml para:
+linguagem Python e estender o Ansible. Agora o playbook 
+precisa ser refatorado, para utilizar um módulo core chamado 
+apt\_module (http://docs.ansible.com/apt\_module.html ) 
+em vez do módulo shell. O módulo shell é útil para 
+automatizar muitas tarefas, mas o Ansible possui módulos 
+especializados que cuidam da consistência da tarefa e 
+criam estados para manter a idempotência. Assim, o 
+arquivo webserver.yml deve ficar desse modo:
+\begin{lstlisting}
+- hosts: all
+  sudo: True
+  user: vagrant
+  tasks:
+    - name: "Atualiza pacotes e instala nginx"
+      apt: name=nginx state=latest update_cache=yes
+      install_recommends=yes
 
+\end{lstlisting}
+Note que duas tarefas foram reduzidas a uma que utiliza 
+o módulo apt e diz para o Ansible instalar o nginx na 
+última versão presente no repositório. Um dos atributos 
+desta tarefa está indicando que um update no cache do 
+gerenciador de pacotes deve ser executado. Outro atributo 
+indica que as dependências recomendadas devem ser instaladas 
+automaticamente. Note que, utilizando o módulo shell, foi 
+preciso pedir explicitamente pela atualização do 
+repositório e também adicionar o parâmetro -y ao comando 
+apt-get install para evitar que a task ficasse esperando 
+uma entrada do usuário.
 
-
+O Ansible também fornece um módulo para o gerenciador 
+de pacotes yum (http://docs.ansible.com/yum\_module.html) 
+e diretivas condicionais que podem ser usadas para 
+detectar o sistema operacional e distribuições de Linux. 
+Veja como declarar a mesma task para instalar nginx para 
+duas famílias de distribuições de Linux utilizando 
+o condicional “when” e variáveis internas do Ansible:
+\begin{lstlisting}
+- name: Install	the nginx packages
+  yum: name={{ item }} state=present
+  with_items: redhat_pkg
+  when:	 ansible_os_family ==	"RedHat"
+- name: Install	the nginx packages
+  apt: name={{	item }} state=present	update_cache=yes
+  with_items: ubuntu_pkg
+  environment: env
+  when: ansible_os_family == "Debian"
+\end{lstlisting}
+Para testar o novo webserver.yml, basta digitar vagrant up ou 
+apenas vagrant provision caso sua máquina virtual ainda esteja 
+sendo executada. Execute o provisionamento em seguida para 
+notar a diferença entre a primeira e a segunda execução. 
+Esta é uma maneira simples de verificar a idempotência 
+do playbook: na segunda rodada, o atributo changed deve ser 0.
 
 \subsection{Instalando Wordpress em uma máquina}
 
