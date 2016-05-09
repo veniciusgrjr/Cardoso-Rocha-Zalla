@@ -1,0 +1,31 @@
+\chapter{Cronograma do Cardoso}
+
+\begin{center}
+\begin{tabular}{ | m{20em} | m{0.5cm}| m{0.5cm} |
+m{0.5cm} | m{0.5cm} | 
+m{0.5cm} |m{0.5cm} |m{0.5cm} |m{0.5cm} | } 
+\hline
+ Atividades & Mar & Abr & Mai & Jun & 
+ Jul & Ago & Set & Out \\ 
+\hline
+Pesquisa inicial & X & & & & & & &  \\ 
+\hline
+Configurando ambiente de produção &  & X & & & & & & \\ 
+\hline
+Configuração build e deploy &  & X & & & & & & \\
+\hline
+Monitoramento &  & & X & & & & & \\
+\hline
+Sistema de gerenciamento de configuração &  & & & & & & & \\
+\hline
+Sistema de controle de versões &  & & & & & & & \\
+\hline
+Provisionamento de repositório de pacotes &  & & & & & & & \\
+\hline
+Deploy na nuvem &  & & & & & & & \\
+ 
+
+\hline
+
+\end{tabular}
+\end{center}
