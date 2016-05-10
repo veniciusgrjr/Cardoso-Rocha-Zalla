@@ -1,5 +1,39 @@
-\chapter{Cronograma do Cardoso}
+\chapter{Cronograma do Rocha}
+\begin{center}
+\begin{tabular}{ | m{20em} | m{0.5cm}| m{0.5cm} |
+m{0.5cm} | m{0.5cm} | 
+m{0.5cm} |m{0.5cm} |m{0.5cm} |m{0.5cm} | } 
+\hline
+ Atividades & Mar & Abr & Mai & Jun & 
+ Jul & Ago & Set & Out \\ 
+\hline
+Linux, SSH, Git & X & & & & & & &  \\ 
+\hline
+Vagrant & X & X & & & & & & \\ 
+\hline
+Ansible &  & X & X & & & & & \\
+\hline
+Instalando Wordpress &  & & X & & & & & \\
+\hline
+Proxy reverso &  & & X & X & & & & \\
+\hline
+Cassandra e EC2 &  & & X & X & & & & \\
+\hline
+Métricas de monitoração &  & & & X & X & & & \\
+\hline
+Analise de performance em cloud com new Relic &  & & & X & X & & & \\
+\hline
+Docker &  & & & X & X & & & \\
+\hline
+Em produção &  & & &  & X & X & X & \\
+ 
 
+
+\hline
+\end{tabular}
+\end{center}
+
+\chapter{Cronograma do Cardoso}
 \begin{center}
 \begin{tabular}{ | m{20em} | m{0.5cm}| m{0.5cm} |
 m{0.5cm} | m{0.5cm} | 
@@ -16,16 +50,17 @@ Configuração build e deploy &  & X & & & & & & \\
 \hline
 Monitoramento &  & & X & & & & & \\
 \hline
-Sistema de gerenciamento de configuração &  & & & & & & & \\
+Sistema de gerenciamento de configuração &  & & X & & & & & \\
 \hline
-Sistema de controle de versões &  & & & & & & & \\
+Sistema de controle de versões &  & & & X & & & & \\
 \hline
-Provisionamento de repositório de pacotes &  & & & & & & & \\
+Provisionamento de repositório de pacotes &  & & & & X & & & \\
 \hline
-Deploy na nuvem &  & & & & & & & \\
+Deploy na nuvem &  & & & & & X & & \\
  
 
 \hline
-
 \end{tabular}
 \end{center}
+
+
