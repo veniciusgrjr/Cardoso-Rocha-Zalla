@@ -1,7 +1,7 @@
-#!/bin/bash
+#/bin/bash
 
 latex PFC_VE
 bibtex PFC_VE
 latex PFC_VE
 latex PFC_VE
-pdflatex PFC_VE.tex
+pdflatex PFC_VE
