@@ -1,50 +1,73 @@
-\chapter{Cronograma do Rocha}
+\chapter{Cronogramas}
+\section{Cronogramas Integrados}
+
 \begin{center}
-\begin{tabular}{ | m{20em} | m{0.5cm}| m{0.5cm} |
-m{0.5cm} | m{0.5cm} | 
-m{0.5cm} |m{0.5cm} |m{0.5cm} |m{0.5cm} | } 
+\begin{tabular}{ | m{2cm} | m{0.6cm}| m{0.6cm} |
+m{0.6cm} | m{0.6cm} | m{0.6cm} |m{0.6cm} |
+m{0.6cm} |m{0.6cm} |m{0.6cm} |m{0.6cm} |
+m{0.6cm} |m{0.6cm} |m{0.6cm} |m{0.6cm} | }
+
 \hline
- Atividades & Mar & Abr & Mai & Jun & 
- Jul & Ago & Set & Out \\ 
+
+\resizebox{10mm}{3mm}{Atividades} & 
+\resizebox{6mm}{2.4mm}{Mar-1} & 
+\resizebox{6mm}{2.4mm}{Mar-2} & 
+\resizebox{6mm}{2.4mm}{Abr-1} & 
+\resizebox{6mm}{2.4mm}{Abr-2} &
+\resizebox{6mm}{2.4mm}{Mai-1} & 
+\resizebox{6mm}{2.4mm}{Mai-2} & 
+\resizebox{6mm}{2.4mm}{Jun-1} & 
+\resizebox{6mm}{2.4mm}{Jun-2} &
+\resizebox{6mm}{2.4mm}{Jul-1} & 
+\resizebox{6mm}{2.4mm}{Jul-2} & 
+\resizebox{6mm}{2.4mm}{Ago-1} & 
+\resizebox{6mm}{2.4mm}{Ago-2} &
+\resizebox{6mm}{2.4mm}{Set-1} & 
+\resizebox{6mm}{2.4mm}{Set-2} \\
 \hline
-Linux, SSH, Git & X & & & & & & &  \\ 
+\resizebox{14mm}{3mm}{ Linux, SSH, Git} & X & & & & & & & & & & & & & \\
 \hline
-Vagrant & X & X & & & & & & \\ 
+\resizebox{10mm}{3mm}{ Vagrant } & X & X & & & & & & & & & & & &  \\
 \hline
-Ansible &  & X & X & & & & & \\
+\resizebox{10mm}{3mm}{ Ansible } &  & X & X & & & & & & & & & & &  \\
 \hline
-Instalando Wordpress &  & & X & & & & & \\
+\resizebox{16mm}{3mm}{ Instalando Wordpress } &  & & X & & & & & & & & & & &  \\
 \hline
-Proxy reverso &  & & X & X & & & & \\
+\resizebox{14mm}{3mm}{ Proxy reverso } &  & & X & X & & & & & & & & & &  \\
 \hline
-Cassandra e EC2 &  & & X & X & & & & \\
+\resizebox{15mm}{3mm}{ Cassandra e EC2 } &  & & X & X & & & & & & & & & & \\
 \hline
-Métricas de monitoração &  & & & X & X & & & \\
+\resizebox{19mm}{3mm}{ Métricas de monitoração }&  & & & X & X & & & & & & & & & \\
 \hline
-Analise de performance em cloud com new Relic &  & & & X & X & & & \\
+\resizebox{24mm}{3mm}{ Analise de performance em cloud com new Relic } &  & & & X & X & & & & & & & & & \\
 \hline
-Docker &  & & & X & X & & & \\
+\resizebox{10mm}{3mm}{ Docker } &  & & & X & X & & & & & & & & & \\
 \hline
-Em produção &  & & &  & X & X & X & \\
- 
+\resizebox{12mm}{3mm}{ Em produção } &  & & &  & X & X & X & & & & & & & \\
+\hline
+\resizebox{17mm}{3mm}{ Testes integrados } & & & & & & & & & X & X & & & & \\
+\hline
+\resizebox{10mm}{3mm}{ Ajustes } & & & & & & & & & & & X & X & & \\
+
+
 
 
 \hline
 \end{tabular}
 \end{center}
 
-\chapter{Cronograma do Cardoso}
+\section{Luan Ferreira Cardoso}
 \begin{center}
 \begin{tabular}{ | m{20em} | m{0.5cm}| m{0.5cm} |
-m{0.5cm} | m{0.5cm} | 
-m{0.5cm} |m{0.5cm} |m{0.5cm} |m{0.5cm} | } 
+m{0.5cm} | m{0.5cm} |
+m{0.5cm} |m{0.5cm} |m{0.5cm} |m{0.5cm} | }
 \hline
- Atividades & Mar & Abr & Mai & Jun & 
- Jul & Ago & Set & Out \\ 
+ Atividades & Mar & Abr & Mai & Jun &
+ Jul & Ago & Set & Out \\
 \hline
-Pesquisa inicial & X & & & & & & &  \\ 
+Pesquisa inicial & X & & & & & & &  \\
 \hline
-Configurando ambiente de produção &  & X & & & & & & \\ 
+Configurando ambiente de produção &  & X & & & & & & \\
 \hline
 Configuração build e deploy &  & X & & & & & & \\
 \hline
@@ -57,10 +80,10 @@ Sistema de controle de versões &  & & & X & & & & \\
 Provisionamento de repositório de pacotes &  & & & & X & & & \\
 \hline
 Deploy na nuvem &  & & & & & X & & \\
- 
+\hline
+Testes integrados & & & & & & & X & \\
+
 
 \hline
 \end{tabular}
 \end{center}
-
-
