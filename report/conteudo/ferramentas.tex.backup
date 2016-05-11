@@ -11,7 +11,7 @@
     \section{Gerenciamento de configurações de software - SCM}
 
 	\subsection{Git} é um sistema de controle de versão distribuído e um 
-	sistema de gerenciamento de código fonte com ênfase em velocidade 
+	sistema de gerenciamento de código fonte e de dados com ênfase em velocidade 
 	\cite{loeliger2012version}. 
 	Cada diretório de trabalho do Git é um repositório com um histórico 
 	completo e habilidade total de acompanhamento de revisões, não 
