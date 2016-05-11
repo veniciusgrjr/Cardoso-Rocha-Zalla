@@ -27,9 +27,8 @@ Serão utilizados as funcionalidades padrão de um site de compras online como S
 
 \begin {figure} [!htb]
 \centering
-\includegraphics[scale=0.5]{imagens/label_loja}
+\includegraphics{imagens/label_loja}
 \caption{Uma prévia da da página inicial da loja virtual}
-
 \end{figure}
 
 As tecnologias utilizadas na aplicação da loja virtual foram:
