@@ -14,8 +14,9 @@
 % \end{enumerate}
 
 
-\section{Arquitetura proprietária IBM }
+\section{Arquitetura proprietária}
 
+Como caso de estudo de uma arquitetura proprietária que automatiza os processos de DevOps, foi escolhido o IBM Bluemix.
 \subsection{Introdução ao Bluemix}
 
 A IBM desenvolveu o IBM Bluemix com a ideia de possibilitar a construção de aplicativos sem se preocupar com a infraestrutura, deixando esta a cargo do Bluemix. Assim, construído com base nos projetos open source mais populares do mundo, o IBM Bluemix é uma plataforma em nuvem que permite desenvolvedores construir e executar os apps e serviços mais modernos em tendência no mercado.
@@ -27,7 +28,7 @@ A IBM desenvolveu o IBM Bluemix com a ideia de possibilitar a construção de ap
   \label{Rotulo}
 \end{figure}
 
-O Bluemix também é o mais recente produto de nuvem da IBM. Ele permite às organizações e aos desenvolvedores uma maneira rápida e fácil de criar, realizar o \textit{deploy} e gerenciar aplicações na nuvem. Ele é uma implementação da IBM \textit{Open Cloud Architecture} baseada no \textit{Cloud Foundry}, uma plataforma como serviço (mais conhecido como \textit{PaaS – Platform as a Service}). Um de seus maiores diferenciais é entregar serviços de nível empresarial que permitem integrar facilmente as aplicações em nuvem sem precisar se preocupar com questões de instalação e configuração das mesmas, otimizando dimensões de custo e produtividade.
+O Bluemix também é o mais recente produto de nuvem da IBM. Ele permite às organizações e aos desenvolvedores uma maneira rápida e fácil de criar, realizar o deploy e gerenciar aplicações na nuvem. Ele é uma implementação da IBM \textit{Open Cloud Architecture} baseada no \textit{Cloud Foundry}, uma plataforma como serviço (mais conhecido como \textit{PaaS – Platform as a Service}). Um de seus maiores diferenciais é entregar serviços de nível empresarial que permitem integrar facilmente as aplicações em nuvem sem precisar se preocupar com questões de instalação e configuração das mesmas, otimizando dimensões de custo e produtividade.
 
 \subsection{Devops e Bluemix}
 É o serviço premium de DevOps da Plataforma de nuvem da IBM, que promove um mecanismo de adoção sem fricção e incremental dos serviços de DevOps para o Bluemix, tornando as fases de planejamento ágil e integrado, codificação, \textit{Build}ing e \textit{deploying} mais fáceis.
@@ -48,7 +49,7 @@ Enquanto principais funcionalidades que fazem do Bluemix o serviço de DevOps na
 \begin{itemize}
     \item Acesso fácil: com repositório Git e a Web IDE que já vem construída, é possível começar a codificação dos apps e serviços instantaneamente
     \item Versatilidade de ferramentas: além da Web IDE que é embutida, é possível usar o Eclipse, Visual Studio ou a ferramenta de escolha do desenvolvedor
-    \item \textit{Build} \& \textit{deploy}: automaticamente construir e realizar o \textit{deploy} das aplicações para o Bluemix
+    \item \textit{Build} \& deploy: automaticamente construir e realizar o deploy das aplicações para o Bluemix
     \item Trabalho em equipe: compartilhar o trabalho e colaborar através de ferramentas especializadas para o desenvolvimento ágil
 \end{itemize}
 
@@ -116,7 +117,7 @@ Para efetivamente entregar o valor prometido, o Bluemix foi concebido de forma a
     \item  Arquitetura para a nuvem
 \end{itemize}
 
-Nesse contexto, o Bluemix possui um forte viés para a importância do desenvolvimento dirigido a testes (não há código que seja escrito se não for para passar em um teste). Os serviços de DevOps no Bluemix podem ser configurados para atumaticamente rodar testes e realizar o \textit{deploy} no Bluemix se o código passar nos testes, obedecendo a um pipeline de DevOps.
+Nesse contexto, o Bluemix possui um forte viés para a importância do desenvolvimento dirigido a testes (não há código que seja escrito se não for para passar em um teste). Os serviços de DevOps no Bluemix podem ser configurados para atumaticamente rodar testes e realizar o deploy no Bluemix se o código passar nos testes, obedecendo a um pipeline de DevOps.
 \begin{figure}[!htb]
     \centering
     \includegraphics{imagens/pipeline}
@@ -142,14 +143,17 @@ Para o sucesso máximo na execução do Bluemix, são requisitos mínimos do sof
     \item	Interface da linha de comando do \textit{Cloud Foundry}: versão 6.5.1 ou posterior
 \end{itemize}
 
-\subsection{Desenvolvimento e gerenciamento de app em Java}
+\subsection{Bluemix na prática}
+
+
+\subsection{Prova de conceito}
 
 O Bluemix permite diversas possibilidades de desenvolvimento de aplicações. Como proposta de estudo e para fins de normalização de uma instância de projeto, visando comparar com outras alternativas de serviços de DevOps, conforme objetivo do trabalho, serão desenvolvidos no contexto do Bluemix, com documentação e estudo de métricas nos pontos aplicáveis, os seguintes trabalhos:
 \begin{enumerate}
     \item Criação de um app Java usando o IBM Bluemix e seus serviços de DevOps
-    \item Métricas para localizar e realizar o \textit{fork} de um app java
-    \item Configurar \textit{Builds} automáticos e \textit{deploys} pelo Bluemix
-    \item Editar um app Java pelo Eclipse e configurar um trigger para \textit{deploy} no Bluemix
+    \item Métricas para localizar e realizar o fork de um app java
+    \item Configurar Builds automáticos e deploys pelo Bluemix
+    \item Editar um app Java pelo Eclipse e configurar um trigger para deploy no Bluemix
     \item Vulnerabilidades em caso de falhas do desenvolvedor
     \item Convidar outros usuários para ajudar no desenvolvimento do app
     \item Gerenciamento do desenvolvimento do app
