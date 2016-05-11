@@ -219,7 +219,7 @@ Git add portas.sh
 Git commit -m "add portas.sh"
 Git push origin master
     \end{lstlisting}
-\subsection{Vagrant e Virtualbox}
+\subsection{Instalação e configuração do Vagrant e do Virtualbox}
 
 Uma máquina virtual parada é uma imagem de um disco 
 de metadados que descrevem sua configuração: processador, 
@@ -232,9 +232,9 @@ bibliotecas e sistemas que abstraem as diferenças entre
 essas plataformas, com interface consistente para criar, 
 executar, parar e modificar uma máquina virtual.
 Para criar e gerenciar os ambientes de máquinas virtuais 
-locais, foi escolhido o Vagrant (www.vagrantup.com). 
-Para executar as máquinas virtuais, foi escolhido o 
-VirtualBox(www.virtualbox.org ).
+locais, foi escolhido o software Vagrant (www.vagrantup.com). 
+Para executar as máquinas virtuais, foi escolhido o software 
+VirtualBox(www.virtualbox.org).
 
 O Vagrant gerencia e abstrai provedores de máquinas 
 virtuais locais e públicos( VMWare, VirtualBox, Amazon 
@@ -254,14 +254,14 @@ complicaria ainda mais o projeto? A resposta é não. O Vagrant
 deixa muita coisa invísivel, possibilitando se preocupar apenas 
 com o código. Funciona como uma máquina virtual reduzida e 
 portável. Para cada projeto é possível deixar 
-um ambiente rodando PHP 4, outro PHP 5, outro Debian, outro em 
-CentOS...
+um ambiente rodando PHP 4, outro PHP 5, outro Debian e outro 
+CentOS.
 
-Para instalar o Virtualbox, basta acessar o site  
-www.virtualbox.org, e seguir os passos de instalação. Após isso, 
-para testar se tudo está funcionando, foi feito o download de 
-uma ISO do ubuntu em www.ubuntu.com/download/server e testou-se 
-a criação de máquinas virtuais.
+Para instalação do Virtualbox, foram seguidos os paços do site  
+www.virtualbox.org. Após isso, para testar se tudo está 
+funcionando, foi feito o download de uma ISO do ubuntu 
+em www.ubuntu.com/download/server e testou-se a criação 
+de máquinas virtuais.
 
 Para instalar o Vagrant, foi acessado www.vagrantup.com e, 
 foram seguidos os passos da instalação. Para criar uma 
@@ -288,7 +288,7 @@ Vagrant.configure( VAGRANTFILE_API_VERSION ) do |config|
 	end
 end
       \end{lstlisting}
-  \item no diretório desse arquivo criado,para subir o 
+  \item No diretório desse arquivo criado,para subir o 
   servidor digitou-se:
     \begin{lstlisting}
 vagrant up
@@ -350,7 +350,7 @@ mudanças de código.
 O Vagrant e sua configuração utiliza Ruby. Existem 
 versões distintas de APIs e nesse trabalho será utilizada 
 a versão 2. Assim, dentro de uma instância da configuração 
-definimos máquinas e suas características, em um bloco de 
+definiu-se máquinas e suas características, em um bloco de 
 código Ruby.
 O Vagrant implementa o conceito de provisionador com 
 drivers para quase todos os sistemas de gerenciamento de 
@@ -393,7 +393,7 @@ end
 Agora a máquina que está rodando será 
 destruída com vagrant destroy e criada novamente com 
 vagrant up.Observando a saída do terminal, e fazendo 
-o teste no browser, percebemos que o nginx foi 
+o teste no browser, percebe-se que o nginx foi 
 instalado com sucesso sem a necessidade de se conectar 
 por ssh para executar o comando que instala o nginx na 
 máquina virtual.
@@ -412,7 +412,7 @@ echo “instalando PHP”
 sudo apt-get install -y php5-fpm
 \end{lstlisting}
 Nesse ponto, não foi preciso destruir e recriar a máquina para 
-executar novamente o provisionamento. foi aproveitado o fato 
+executar novamente o provisionamento. Foi aproveitado o fato 
 de que o gerenciador de pacotes não instalará um pacote duas 
 vezes. Assim, é possível executar o mesmo script, que só o PHP 
 seria instalado. O Vagrant oferece um comando que ativa somente 
@@ -424,17 +424,18 @@ Com o comando ls -larth é possível ver que foi criado um diretório
 chamado .vagrant que contém todos os dados do ciclo de vida e 
 provisionamento da máquina virtual.
 
-\subsection{Ansible}
+\subsection{Instalação e configuração do Ansible}
 
 É um sistema de automação de configuração feito em python, 
 que permite descrever procedimentos em arquivos no formato 
 YAML que são reproduzidos utilizando SSH em máquinas remotas. 
 Existem outras ferramentas desta categoria que executam 
 localmente e que fornecem sevidores para o gerenciamento de 
-dados remotamente, como CHEF, Puppet e CFEngine. Vamos utilizar 
+dados remotamente, como CHEF, Puppet e CFEngine. Para essa 
+arquitetura será utilizado  
 o Ansible localmente sem seu servidor de dados, o Ansible Tower.
 O Ansible vem com bibliotecas completas para quase todas as 
-tarefas além de uma linguagem de template. Além das tarefas 
+tarefas, além de uma linguagem de template. Além das tarefas 
 dentro de um servidor, o Ansible fornece módulos para o 
 provisionamento de máquinas e aplicações remotas. 
 Provisionar é o jargão para instalar e configurar itens de 
@@ -496,13 +497,13 @@ Vagrant.configure( VAGRANTFILE_API_VERSION ) do |config|
 end
 \end{lstlisting}
 A definição de máquina virtual de testvm tem um atributo 
-que define um provisionador. No capítulo anterior, foi 
+que define um provisionador. Na configuração anterior, foi 
 utilizado um shell script para instalar o nginx. Com essa 
 mudança, o Vagrant utilizará o Ansible como provisionador 
 com o playbook webserver.yml. Usou-se o atributo verbose 
 do Ansible com o valor vvv para indicar que todas as 
 mensagens devem ser enviadas para o console, e assim 
-podemos observar os comandos sendo executados.
+pode-se observar os comandos sendo executados.
 
 Toda task é uma função de um módulo de Ansible. 
 Os módulos que vêm na instalação padrão são chamados de 
@@ -523,7 +524,6 @@ arquivo webserver.yml deve ficar desse modo:
     - name: "Atualiza pacotes e instala nginx"
       apt: name=nginx state=latest update_cache=yes
       install_recommends=yes
-
 \end{lstlisting}
 Note que duas tarefas foram reduzidas a uma que utiliza 
 o módulo apt e diz para o Ansible instalar o nginx na 
@@ -562,5 +562,5 @@ notar a diferença entre a primeira e a segunda execução.
 Esta é uma maneira simples de verificar a idempotência 
 do playbook: na segunda rodada, o atributo changed deve ser 0.
 
-\subsection{Instalando Wordpress em uma máquina}
+
 
