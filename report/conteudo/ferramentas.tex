@@ -2,7 +2,7 @@
 
 \section{Banco de Dados}
 
-\subsection{MySQL} 
+\subsection{MySQL}
 
 %é um sistema de gerenciamento de banco de dados (SGBD), que utiliza a linguagem SQL (Linguagem de Consulta Estruturada) como interface. É atualmente um dos bancos mais populares com mais de 10 milhões de instalações pelo mundo.
 
@@ -45,4 +45,20 @@
 
 \textbf{Amazon Web Services:}plataforma de serviços em nuvem segura oferecendo poder computacional, armazenamento de banco de dados, distribuição de conteúdo e outras funcionalidades para ajudar as empresas em seu dimensionamento e crescimento.
 
+\section{Containers}
+É um novo modelo de virtualização que trabalha no nível de sistema operacional, ou seja, ao contrário da máquina virtual, um container não tem visão de uma máquina inteira, ele é apenas um processo em execução em um kernel compartilhado entre todos os outros containers.
 
+Eles utilizam o namespace para prover o devido isolamento de memória RAM, processamento, disco e acesso a rede, ou seja, mesmo compartilhamento o mesmo kernel, esse processo em execução tem a visão de estar usando um sistema operacional dedicado.
+
+Assim, os containers são leves por não consumir muitos recursos do sistema uma vez que por usar o mesmo kernel eles podem executar com mais eficiência que uma máquina virtual. Enquanto objetos de software virtuais que incluem todos os elementos que um app precisa para executar, o container tem benefícios de isolamento e alocação de recurso, sendo mais portátil e eficiente que uma máquina virtual. Dessa forma, eles ajudam a construir aplicativos de alta qualidade mais rapidamente.
+
+\section{Docker}
+Como solução inovadora, o Docker traz diversos serviços e novas facilidades que deixam esse modelo muito mais atrativo. Um deles é a criação do conceito de “imagens”, que podem ser descritas como definições estáticas de como os containers devem ser no momento da sua inicialização. São como fotografias de um ambiente. Uma vez instanciadas, colocadas em execução, elas assumem a função de containers, ou seja, saem da abstração de definição e se transformam em processos em execução, dentro de um contexto isolado, que enxergam um sistema operacional dedicado pra sí, mas na verdade compartilham o mesmo kernel.
+
+Junto a facilidade de uso dos containers, o Docker agregou o conceito de nuvem, que dispõe de serviço um para carregar e “baixar” imagens Dockers, ou seja, se trata de uma aplicação web que disponibiliza um repositório de ambientes prontos, onde viabilizou um alto nível de compartilhamento de ambientes.
+
+Com o uso do serviço de nuvem do Docker, percebe-se que a adoção do modelo de containers ultrapassa a questão técnica e adentra nos assuntos de processo, gerência e atualização do ambiente, tornando possível compartilhar facilmente as mudanças e viabilizar uma gestão centralizada das definições de ambiente.
+
+Utilizando a nuvem Docker, é possível disponibilizar ambientes de teste mais leves, acelerando drasticamente o potencial de velocidade com que problemas em ambientes integrados são resolvidos.
+
+Assim, tem-se o Docker como um importante projeto open-source que automatiza o deploy de aplicações dentro de containers de softwares por meio de uma camada adicional de abstração e automação em nível da virtualização do sistema operacional. O uso de características de isolação de recursos do kernel do Linux (cgroups e namespaces do kernel) permitem a containers independentes rodar dentro de uma instância particular do Linux, evitando o overhead de iniciar e gerenciar máquinas virtuais.
