@@ -17,22 +17,13 @@
 
 \section{Segunda Arquitetura Customizada }
 
-\subsection{Ferramentas básicas: SSH, Git}
+\subsection{Criação de chave pública SSH}
 
-\subsubsection{SSH}
-
-É o protocolo utilizado para conectar-se de forma 
-segura em servidores \cite{barret2005ssh}.
-Por meio de criptografia ele cria um canal
-seguro entre duas máquinas. Também 
-pode ser utilizado para executar comandos 
-remotamente sem entrar no shell da máquina.
-O Ansible, ferramenta que será usada mais afrente, 
-só precisa de acesso por SSH.
-
-Na maioria dos provedores, será encontrada uma 
-opção para adicionar uma chave SSH pública.
-Para criar uma chave RSA local segue-se os 
+Primeiramente, essa arquitetura se inicia com a 
+configuração de chaves públicas. Na maioria dos 
+provedores, será encontrada uma opção para adicionar 
+uma chave SSH pública.
+Para criar uma chave RSA local seguiu-se os 
 seguintes passos:
  \begin{enumerate}
    \item Digite o comando a seguir:
@@ -53,19 +44,11 @@ id_rsa_devops e id_rsa_devops.pub
 	  e representam as chaves públicas.
 
  \end{enumerate} 
-\subsubsection{Git}
+ 
+\subsection{Configuração do controle de versão com Git e GitHub}
+Para gerenciar o versionamento, foi escolhida a ferramenta Git e 
+seguiu-se os seguintes paços para realizar sua instalação:
 
-O Git é um sistema de controle de versão gratuita. 
-Em termos práticos, sua função é controlar mudanças 
-em repositórios de dados \cite{loeliger2012version}. Essa ferramenta controla 
-repositórios de dados, pois, além de código-fonte de 
-programas, também é possível controlar repositórios 
-para a constução de livros, e qualquer outra 
-atividade que em que várias pessoas trabalham ao 
-paralelamente na sua construção.
-
-Para instalar essa ferramenta, serão seguidos os 
-seguintes passos:
   \begin{enumerate}
    \item Para linux baseado em debian:
       \begin{lstlisting}
@@ -82,52 +65,55 @@ sudo yum install git
 brew install git
       \end{lstlisting}
  \end{enumerate}
-Após instalar o Git, execute os seguintes comandos 
-para configurar um nome de usuário e um email: 
+Após a instalação do Git, foram executados os seguintes 
+comandos para configurar um nome de usuário e um email, 
+que serão usados toda vez em que for necessário se 
+conectar ao repositório remoto: 
       \begin{lstlisting}
 git config --global user.name "Seu nome"
 git config --global user.email "seu@email.com.br"
       \end{lstlisting}
 Nesse momento o ambiente está com o Git instalado 
 e com nome e e-mail configurados. Será adotado 
-agora um sistema para controlar os repositórios 
+agora um sistema para controlar remotamente os repositórios 
 usados para construir o modelo de DevOps proposto.
 
 O “Github” é um site que fornece um serviço de 
 controle de repositórios remotos de “Git” sem custo,
 caso o projeto seja aberto, e com custo caso o projeto 
-seja privados. Para começar a utilizalo de forma 
-gratuita, deve-se acessar o site “github.com” e criar 
-uma conta. Neste ponto, será necessária a chave “ssh”, 
-que está em:
+seja privados. Para utiliza-lo de forma 
+gratuita, foi acessado o site “github.com”, e foi criada 
+uma conta. Neste ponto, será necessária a chave “ssh” que 
+foi criada anteriormente, que está em:
       \begin{lstlisting}
 ~/.ssh/id_rsa.pub.
       \end{lstlisting}
-Agora, será criado um novo repositório que posteriormente 
+A partir desse ponto, foi criado um novo repositório 
+que posteriormente 
 será sincronizado com o repositório local que estará em 
 cada máquina que estiver trabalhando no projeto. Para criar 
-esse repositório, basta seguir os paços do site clicando 
+esse repositório, foram  seguidos os paços do site clicando 
 no botão de novo repositório. Para esse projeto, será dado 
-o nome de projeto-simples. Agora, será criado um diretório 
+o nome de projeto-simples. Assim, será criado um diretório 
 local e, posteriormente, será feita a associação desse 
 diretório local com o repositório remoto criado 
-anteriormente no GitHub. Para isso, deve-se seguir os 
+anteriormente no GitHub. Para isso, seguiu-se os 
 passos listados abaixo:
 \begin{enumerate}
-   \item Para criar o diretório local digite na linha de comando:
+   \item Para criar o diretório local foi digitado na linha de comando:
       \begin{lstlisting}
 mkdir projeto-simples
       \end{lstlisting}
       
-   \item Entre nesse diretório com:
+   \item Entrou-se nesse diretório com o comando:
       \begin{lstlisting}
 cd projeto-simples
       \end{lstlisting}
    
-   \item Com um editor de textos favorito, será criado um arquivo 
+   \item Com um editor de textos, foi criado um arquivo 
    de exemplo, com nome de README.md, para poder ser sincronizado 
    com o repositório remoto criado, explicando a função do projeto. 
-   Será colocado o seguinte texto no arquivo:
+   Foi colocado o seguinte texto no arquivo:
    
       \begin{lstlisting}
 # README do meu projeto-simples
@@ -144,8 +130,8 @@ Ls /etc | cut -d" -f 1 | sort | uniq | wc -l
       \end{lstlisting} 
  \end{enumerate}
 Nesse momento, já foi criado o projeto simples que será 
-sincronizado com o repositório remoto no github. Agora 
-seguiremos os passos a seguir para realizar essa sincronização:
+sincronizado com o repositório remoto no github. Foram  
+seguidos os passos a seguir para realizar essa sincronização:
 \begin{enumerate}
    \item Para iniciar o repositório Git no diretório local:
       \begin{lstlisting}
@@ -174,9 +160,9 @@ git remote add origin git@github.com:veniciusgrjr/projeto-simples.git
 git push -u origin master
       \end{lstlisting}
  \end{enumerate}
-Após isso, se a página do repositório remoto for atualizada, os 
-arquivos locais estarão lá. Será feito agora um pequeno resumo 
-dos comandos do Git:
+Após isso, a página do repositório remoto foi atualizada e os 
+arquivos locais puderam ser visializados remotamente. Foi feito 
+agora um pequeno resumo dos comandos do Git:
 \begin{itemize}
     \item Esse comando Inicia um repositório Git no 
     diretório atual.
@@ -217,15 +203,17 @@ Git clone
 Git status
 	\end{lstlisting}
 \end{itemize}
-Agora, o diretório local será modificado e sincronizado 
-com o repositório no Github. Para isso, será criado um 
-arquivo com o nome de portas.sh, com o seguinte código:
+Agora, para testar a ferramenta de sincronização, o diretório 
+local será modificado e sincronizado com o repositório no Github. 
+Para isso, foi criado um arquivo com o nome de portas.sh, 
+com o seguinte código:
     \begin{lstlisting}
 #!/bin/sh
 echo "Lista de porta 80 no netstat"
 netstat -an | grep 80
     \end{lstlisting}
- Para adicionar essa modificação ao repositório no Github:
+ Para adicionar essa modificação ao repositório no Github, 
+ foram executados os seguintes comandos:
      \begin{lstlisting}
 Git add portas.sh
 Git commit -m "add portas.sh"
