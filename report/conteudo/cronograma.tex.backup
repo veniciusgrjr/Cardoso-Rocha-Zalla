@@ -1,89 +1,64 @@
-\chapter{Cronogramas}
-\section{Cronogramas Integrados}
-
-\begin{center}
-\begin{tabular}{ | m{2cm} | m{0.6cm}| m{0.6cm} |
+\chapter{Cronograma}
+\begin{table}[]
+%\begin{center}
+\centering
+\caption{Cronograma}
+\label{Cronograma}
+\begin{tabular} { | m{2cm} | m{0.6cm}| m{0.6cm} |
 m{0.6cm} | m{0.6cm} | m{0.6cm} |m{0.6cm} |
-m{0.6cm} |m{0.6cm} |m{0.6cm} |m{0.6cm} |
-m{0.6cm} |m{0.6cm} |m{0.6cm} |m{0.6cm} | }
-
+m{0.6cm} |m{0.6cm} |m{0.6cm} |m{0.6cm} |m{0.6cm} |
+m{0.6cm} |}
 \hline
-
-\resizebox{10mm}{3mm}{Atividades} & 
-\resizebox{6mm}{2.4mm}{Mar-1} & 
-\resizebox{6mm}{2.4mm}{Mar-2} & 
-\resizebox{6mm}{2.4mm}{Abr-1} & 
+\resizebox{20mm}{2.5mm}{Atividades} &
+\resizebox{6mm}{2.4mm}{Mar-1} &
+\resizebox{6mm}{2.4mm}{Mar-2} &
+\resizebox{6mm}{2.4mm}{Abr-1} &
 \resizebox{6mm}{2.4mm}{Abr-2} &
-\resizebox{6mm}{2.4mm}{Mai-1} & 
-\resizebox{6mm}{2.4mm}{Mai-2} & 
-\resizebox{6mm}{2.4mm}{Jun-1} & 
+\resizebox{6mm}{2.4mm}{Mai-1} &
+\resizebox{6mm}{2.4mm}{Mai-2} &
+\resizebox{6mm}{2.4mm}{Jun-1} &
 \resizebox{6mm}{2.4mm}{Jun-2} &
-\resizebox{6mm}{2.4mm}{Jul-1} & 
-\resizebox{6mm}{2.4mm}{Jul-2} & 
-\resizebox{6mm}{2.4mm}{Ago-1} & 
-\resizebox{6mm}{2.4mm}{Ago-2} &
-\resizebox{6mm}{2.4mm}{Set-1} & 
-\resizebox{6mm}{2.4mm}{Set-2} \\
+\resizebox{6mm}{2.4mm}{Jul-1} &
+\resizebox{6mm}{2.4mm}{Jul-2} &
+\resizebox{6mm}{2.4mm}{Ago-1} &
+\resizebox{6mm}{2.4mm}{Ago-2}  \\
 \hline
-\resizebox{14mm}{3mm}{ Linux, SSH, Git} & X & & & & & & & & & & & & & \\
-\hline
-\resizebox{10mm}{3mm}{ Vagrant } & X & X & & & & & & & & & & & &  \\
-\hline
-\resizebox{10mm}{3mm}{ Ansible } &  & X & X & & & & & & & & & & &  \\
-\hline
-\resizebox{16mm}{3mm}{ Instalando Wordpress } &  & & X & & & & & & & & & & &  \\
-\hline
-\resizebox{14mm}{3mm}{ Proxy reverso } &  & & X & X & & & & & & & & & &  \\
-\hline
-\resizebox{15mm}{3mm}{ Cassandra e EC2 } &  & & X & X & & & & & & & & & & \\
-\hline
-\resizebox{19mm}{3mm}{ Métricas de monitoração }&  & & & X & X & & & & & & & & & \\
-\hline
-\resizebox{24mm}{3mm}{ Analise de performance em cloud com new Relic } &  & & & X & X & & & & & & & & & \\
-\hline
-\resizebox{10mm}{3mm}{ Docker } &  & & & X & X & & & & & & & & & \\
-\hline
-\resizebox{12mm}{3mm}{ Em produção } &  & & &  & X & X & X & & & & & & & \\
-\hline
-\resizebox{17mm}{3mm}{ Testes integrados } & & & & & & & & & X & X & & & & \\
-\hline
-\resizebox{10mm}{3mm}{ Ajustes } & & & & & & & & & & & X & X & & \\
 
 
-
-
+\resizebox{14mm}{2.5mm}{Fase 1} & X & & & & & & & & & & & \\
 \hline
+\resizebox{14mm}{2.5mm}{Fase 2} & X & & & & & & & & & & &  \\
+\hline
+\resizebox{14mm}{2.5mm}{Fase 3} & X & & & & & & & & & & &  \\
+\hline
+\resizebox{14mm}{2.5mm}{Fase 4} & X & & & & & & & & & & &  \\
+\hline
+\resizebox{14mm}{2.5mm}{Fase 5} & X & & & & & & & & & & &  \\
+\hline
+\resizebox{14mm}{2.5mm}{Fase 6} & X & & & & & & & & & & &  \\
+\hline
+\resizebox{14mm}{2.5mm}{Fase 7} & X & & & & & & & & & & &  \\
+\hline
+\resizebox{14mm}{2.5mm}{Fase 8} & X & & & & & & & & & & &  \\
+\hline
+\resizebox{14mm}{2.5mm}{Fase 9} & X & & & & & & & & & & &  \\
+\hline
+
 \end{tabular}
-\end{center}
-
-\section{Luan Ferreira Cardoso}
-\begin{center}
-\begin{tabular}{ | m{20em} | m{0.5cm}| m{0.5cm} |
-m{0.5cm} | m{0.5cm} |
-m{0.5cm} |m{0.5cm} |m{0.5cm} |m{0.5cm} | }
-\hline
- Atividades & Mar & Abr & Mai & Jun &
- Jul & Ago & Set & Out \\
-\hline
-Pesquisa inicial & X & & & & & & &  \\
-\hline
-Configurando ambiente de produção &  & X & & & & & & \\
-\hline
-Configuração build e deploy &  & X & & & & & & \\
-\hline
-Monitoramento &  & & X & & & & & \\
-\hline
-Sistema de gerenciamento de configuração &  & & X & & & & & \\
-\hline
-Sistema de controle de versões &  & & & X & & & & \\
-\hline
-Provisionamento de repositório de pacotes &  & & & & X & & & \\
-\hline
-Deploy na nuvem &  & & & & & X & & \\
-\hline
-Testes integrados & & & & & & & X & \\
+%\end{center}
+\end{table}
 
 
-\hline
-\end{tabular}
-\end{center}
+
+ \begin{itemize}
+   \item Fase 1 - Estudo bibliográfico
+   \item Fase 2 - Configuração dos ambientes
+   \item Fase 3 - Build
+   \item Fase 4 - Testes automatizados
+   \item Fase 5 - Debug
+   \item Fase 6 - Deploy
+   \item Fase 7 - Em produção
+   \item Fase 8 - Métricas de monitoração
+   \item Fase 9 - Análise entre arquiteturas
+ \end{itemize}
+
